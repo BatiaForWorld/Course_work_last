@@ -98,6 +98,7 @@ __pypackages__/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
+gunicorn.ctl
 
 # Redis
 *.rdb
