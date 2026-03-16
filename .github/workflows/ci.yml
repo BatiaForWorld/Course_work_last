@@ -132,17 +132,8 @@ jobs:
           ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             set -e
             cd /var/www/habits
-          
+  
             docker compose up -d --build --remove-orphans
-            docker compose exec -T db pg_isready -U pass -d pass
-            docker compose exec -T web python manage.py migrate --noinput
-            docker compose exec -T web python manage.py collectstatic --noinput
-          
-            export $(grep -v '^#' .env | xargs)
-            docker compose exec -T \
-              -e DJANGO_SUPERUSER_USERNAME="$DJANGO_SUPERUSER_USERNAME" \
-              -e DJANGO_SUPERUSER_PASSWORD="$DJANGO_SUPERUSER_PASSWORD" \
-              -e DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL" \
-              web python manage.py createsuperuser --noinput || echo "Admin exists"
-          
+  
+            docker compose ps
           EOF

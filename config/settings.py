@@ -117,7 +117,7 @@ REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "")
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
+        'rest_framework.authentication.SessionAuthentication', ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_PAGINATION_CLASS": "habits.pagination.HabitPagination",
     "PAGE_SIZE": 5,

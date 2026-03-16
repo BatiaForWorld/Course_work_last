@@ -26,10 +26,11 @@ services:
   web:
     build: .
     command: >
-      sh -c "python manage.py migrate --noinput &&              
-             python manage.py collectstatic -c --no-input && 
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py collectstatic --noinput &&
+             python manage.py createsuperuser --noinput || true &&
              gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3"
-    volumes:
+      volumes:
       - .:/app
       - static_value:/app/static
     env_file: .env
