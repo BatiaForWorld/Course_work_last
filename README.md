@@ -422,6 +422,7 @@ cd /var/www/
 sudo rm -r Course_work_last
 cd
 ```
+
 ### Проверка работоспособности на локальном ПК
 
 - Django API: открыть 
