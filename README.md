@@ -363,13 +363,13 @@ cd /var/www/
 sudo chown -R $USER:$USER /var/www/
 sudo chmod -R 755 /var/www/
 ```
-В терминале введите команду для клонирования проекта
+В терминале введите команду для клонирования проекта находясь в папке /var/www
 ```angular2html
-git clone https://github.com/BatiaForWorld/Course_work_5.git
+git clone https://github.com/BatiaForWorld/Course_work_last.git
 ```
 Перейдите внутрь папки скаченного проекта:
 ```angular2html
-cd /var/www/Course_work_5
+cd /var/www/Course_work_last
 ```
 
 ## Docker Compose
@@ -387,7 +387,7 @@ nano .env
 2) Запуск всех сервисов одной командой:
 
 ```bash
-docker compose up --build
+docker compose up --build -d
 ```
 Проверьте в соседнем терминале:
 Проверяем Time Zone:
@@ -412,9 +412,16 @@ docker compose down -v
 ```
 И соберите заново:
 ```angular2html
-docker compose up --build
+docker compose up --build -d
 ```
-
+Если нужно удалить контейнеры и созданную папку с приложение, выполните команду
+```angular2html
+cd /var/www/Course_work_last
+docker compose down
+cd /var/www/
+sudo rm -r Course_work_last
+cd
+```
 ### Проверка работоспособности на локальном ПК
 
 - Django API: открыть 
@@ -542,6 +549,9 @@ sudo chmod -R 755 /var/www/habits
 ### Добавьте необходимые секреты для GitHub workflows:
 
 DEPLOY_DIR - папка которая содержит проект
+```angular2html
+/var/www/habits
+```
 
 DOCKER_HUB_ACCESS_TOKEN - токен с Docker Hub
 
