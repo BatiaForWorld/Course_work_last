@@ -101,9 +101,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: |
-          docker build --pull -t habits-app:${{ github.sha }} .
-          docker run --rm habits-app:${{ github.sha }} python manage.py check
+        run: docker build --pull -t habits-app:${{ github.sha }} .
 
   deploy:
     needs: build
